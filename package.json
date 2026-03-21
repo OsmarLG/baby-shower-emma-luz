@@ -1,0 +1,24 @@
+{
+  "name": "baby-shower-invitation",
+  "version": "1.0.0",
+  "description": "Elegant digital baby shower invitation for Emma Luz",
+  "main": "index.html",
+  "scripts": {
+    "start": "serve .",
+    "test": "echo \"No tests specified\" && exit 0",
+    "build": "echo \"No build step required for static site\"",
+    "deploy": "./deploy.sh"
+  },
+  "keywords": [
+    "baby-shower",
+    "invitation",
+    "digital",
+    "responsive",
+    "event"
+  ],
+  "author": "ELROI Dev",
+  "license": "MIT",
+  "devDependencies": {
+    "serve": "^14.0.0"
+  }
+}

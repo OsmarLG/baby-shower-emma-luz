@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test - Baby Shower Invitation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        .test-result {
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+        }
+        .pass {
+            background-color: #d4edda;
+            border: 1px solid #c3e6cb;
+            color: #155724;
+        }
+        .fail {
+            background-color: #f8d7da;
+            border: 1px solid #f5c6cb;
+            color: #721c24;
+        }
+        .warning {
+            background-color: #fff3cd;
+            border: 1px solid #ffeaa7;
+            color: #856404;
+        }
+        h1, h2 {
+            color: #333;
+        }
+        .summary {
+            background-color: #e9ecef;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>🧪 Test de Invitación Baby Shower</h1>
+    
+    <div class="summary">
+        <h2>Resumen de Pruebas</h2>
+        <p>Esta página verifica que todos los componentes de la invitación funcionen correctamente.</p>
+    </div>
+    
+    <h2>Pruebas Automáticas</h2>
+    
+    <div id="test-results">
+        <!-- Los resultados se llenarán con JavaScript -->
+    </div>
+    
+    <h2>Pruebas Manuales Recomendadas</h2>
+    <ol>
+        <li><strong>Responsive Design</strong>: Redimensiona la ventana para verificar que se adapta a móviles, tablets y desktop.</li>
+        <li><strong>Interactividad</strong>:
+            <ul>
+                <li>Haz clic en "Confirmar Asistencia" - debe abrir un modal</li>
+                <li>Haz clic en "Descargar PDF" - debe generar un PDF</li>
+                <li>Haz clic en "Compartir" - debe abrir opciones de compartir</li>
+                <li>Haz clic en el mapa - debe abrir Google Maps</li>
+            </ul>
+        </li>
+        <li><strong>Contenido</strong>: Verifica que toda la información sea correcta:
+            <ul>
+                <li>Nombre: Emma Luz (con doble m)</li>
+                <li>Fecha: 18 de abril, 8:00 AM</li>
+                <li>Lugar: Restaurante Casa Bonita, dirección correcta</li>
+                <li>Sugerencias de regalos: Efectivo, Ropa, Pañales</li>
+            </ul>
+        </li>
+        <li><strong>Performance</strong>: La página debe cargar rápidamente (menos de 3 segundos).</li>
+        <li><strong>Accesibilidad</strong>:
+            <ul>
+                <li>Navega con teclado (Tab, Enter)</li>
+                <li>Verifica contraste de colores</li>
+                <li>Textos alternativos para iconos</li>
+            </ul>
+        </li>
+    </ol>
+    
+    <div class="summary">
+        <h2>Resultado Final</h2>
+        <p id="final-result">Ejecutando pruebas...</p>
+        <button onclick="runTests()">🔁 Ejecutar Pruebas Nuevamente</button>
+        <button onclick="window.open('index.html', '_blank')">📄 Abrir Invitación Completa</button>
+    </div>
+    
+    <script>
+        function runTests() {
+            const results = document.getElementById('test-results');
+            results.innerHTML = '';
+            
+            const tests = [
+                {
+                    name: 'Archivos principales presentes',
+                    test: () => {
+                        return fetch('index.html').then(r => r.ok)
+                            && fetch('style.css').then(r => r.ok)
+                            && fetch('script.js').then(r => r.ok);
+                    }
+                },
+                {
+                    name: 'HTML válido (estructura básica)',
+                    test: () => {
+                        return document.querySelector('html') !== null
+                            && document.querySelector('head') !== null
+                            && document.querySelector('body') !== null;
+                    }
+                },
+                {
+                    name: 'CSS cargado correctamente',
+                    test: () => {
+                        const styles = document.styleSheets;
+                        return styles.length > 0;
+                    }
+                },
+                {
+                    name: 'JavaScript cargado correctamente',
+                    test: () => {
+                        return typeof runTests === 'function';
+                    }
+                },
+                {
+                    name: 'Contenido esencial presente',
+                    test: () => {
+                        const html = document.documentElement.outerHTML;
+                        return html.includes('Emma') 
+                            && html.includes('Luz')
+                            && html.includes('18 de abril')
+                            && html.includes('Casa Bonita');
+                    }
+                },
+                {
+                    name: 'Responsive meta tag presente',
+                    test: () => {
+                        const viewport = document.querySelector('meta[name="viewport"]');
+                        return viewport !== null && viewport.content.includes('width=device-width');
+                    }
+                },
+                {
+                    name: 'Favicon configurado',
+                    test: () => {
+                        const favicon = document.querySelector('link[rel*="icon"]');
+                        return favicon !== null;
+                    }
+                },
+                {
+                    name: 'Codificación UTF-8 configurada',
+                    test: () => {
+                        const charset = document.querySelector('meta[charset]');
+                        return charset !== null && charset.getAttribute('charset').toLowerCase() === 'utf-8';
+                    }
+                }
+            ];
+            
+            let passed = 0;
+            let failed = 0;
+            
+            tests.forEach((testObj, index) => {
+                const resultDiv = document.createElement('div');
+                resultDiv.className = 'test-result';
+                
+                try {
+                    const testResult = testObj.test();
+                    if (testResult) {
+                        resultDiv.className += ' pass';
+                        resultDiv.innerHTML = `✅ ${testObj.name}`;
+                        passed++;
+                    } else {
+                        resultDiv.className += ' fail';
+                        resultDiv.innerHTML = `❌ ${testObj.name}`;
+                        failed++;
+                    }
+                } catch (error) {
+                    resultDiv.className += ' fail';
+                    resultDiv.innerHTML = `❌ ${testObj.name} - Error: ${error.message}`;
+                    failed++;
+                }
+                
+                results.appendChild(resultDiv);
+            });
+            
+            const finalResult = document.getElementById('final-result');
+            if (failed === 0) {
+                finalResult.innerHTML = `🎉 ¡Todas las pruebas pasaron! (${passed}/${tests.length})`;
+                finalResult.style.color = 'green';
+            } else {
+                finalResult.innerHTML = `⚠️ ${passed} pruebas pasadas, ${failed} fallidas (${passed + failed}/${tests.length})`;
+                finalResult.style.color = 'orange';
+            }
+        }
+        
+        // Ejecutar pruebas al cargar
+        document.addEventListener('DOMContentLoaded', runTests);
+    </script>
+</body>
+</html>

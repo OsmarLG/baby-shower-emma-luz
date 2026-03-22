@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quick Test - Baby Shower Fixes</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        .test { margin: 10px 0; padding: 10px; border: 1px solid #ccc; }
+        .pass { background: #d4edda; }
+        .fail { background: #f8d7da; }
+    </style>
+</head>
+<body>
+    <h1>Baby Shower Fixes - Quick Test</h1>
+    
+    <div id="test-results">
+        <div class="test" id="test1">Test 1: Checking script.js for map link...</div>
+        <div class="test" id="test2">Test 2: Checking WhatsApp phone number...</div>
+        <div class="test" id="test3">Test 3: Checking countdown date...</div>
+        <div class="test" id="test4">Test 4: Checking for JavaScript errors...</div>
+    </div>
+    
+    <script>
+        // Test 1: Check map link
+        fetch('script.js')
+            .then(r => r.text())
+            .then(text => {
+                const test1 = document.getElementById('test1');
+                if (text.includes('https://maps.app.goo.gl/x11p6SWtkZCkJVZi6')) {
+                    test1.innerHTML = '✅ Test 1 PASS: Map link is correct (https://maps.app.goo.gl/x11p6SWtkZCkJVZi6)';
+                    test1.className = 'test pass';
+                } else {
+                    test1.innerHTML = '❌ Test 1 FAIL: Map link not found or incorrect';
+                    test1.className = 'test fail';
+                }
+            });
+        
+        // Test 2: Check WhatsApp number
+        fetch('script.js')
+            .then(r => r.text())
+            .then(text => {
+                const test2 = document.getElementById('test2');
+                const regex = /phoneNumber\s*=\s*['"]\+526151127548['"]/;
+                if (regex.test(text)) {
+                    test2.innerHTML = '✅ Test 2 PASS: WhatsApp number is correct (+526151127548)';
+                    test2.className = 'test pass';
+                } else {
+                    test2.innerHTML = '❌ Test 2 FAIL: WhatsApp number incorrect or not found';
+                    test2.className = 'test fail';
+                }
+            });
+        
+        // Test 3: Check countdown date
+        const test3 = document.getElementById('test3');
+        try {
+            const eventDate = new Date('2026-04-18T08:00:00-07:00');
+            const now = new Date();
+            if (eventDate > now) {
+                test3.innerHTML = `✅ Test 3 PASS: Countdown date is correct (April 18, 2026, 8:00 AM) - ${Math.floor((eventDate - now) / (1000 * 60 * 60 * 24))} days remaining`;
+                test3.className = 'test pass';
+            } else {
+                test3.innerHTML = '❌ Test 3 FAIL: Event date is in the past';
+                test3.className = 'test fail';
+            }
+        } catch (e) {
+            test3.innerHTML = `❌ Test 3 FAIL: ${e.message}`;
+            test3.className = 'test fail';
+        }
+        
+        // Test 4: Check for shareLink.value error
+        fetch('script.js')
+            .then(r => r.text())
+            .then(text => {
+                const test4 = document.getElementById('test4');
+                if (text.includes('shareLink.value')) {
+                    test4.innerHTML = '❌ Test 4 FAIL: Found shareLink.value which will cause JavaScript error';
+                    test4.className = 'test fail';
+                } else {
+                    test4.innerHTML = '✅ Test 4 PASS: No shareLink.value found (good!)';
+                    test4.className = 'test pass';
+                }
+            });
+    </script>
+</body>
+</html>

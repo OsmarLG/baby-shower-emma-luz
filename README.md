@@ -23,8 +23,8 @@ La invitación está hosteada en: [https://baby-shower.openclaw.elroi.cloud](htt
 
 - **Fecha**: 18 de abril, 2026
 - **Hora**: 8:00 AM
-- **Lugar**: Restaurante Casa Bonita, Calle 5 de Febrero, La Pava, California Sur, La Paz, Baja California Sur
-- **Para**: Malús y la pequeña **Emma Luz** (con doble m)
+- **Lugar**: Restaurante Casa Bonita, Calle 5 de Febrero, La Paz, Baja California Sur
+- **Para**: **Emma Luz** y sus papás
 
 ## 🎁 Sugerencias de Regalos
 
@@ -192,7 +192,7 @@ La invitación está optimizada para:
 ## 👥 Créditos
 
 - **Diseño y desarrollo**: ELROI Dev
-- **Para**: Malús y Emma Luz
+- **Para**: Emma Luz
 - **Fecha**: Marzo 2026
 
 ## 📄 Licencia

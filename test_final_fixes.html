@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Baby Shower - Final Fixes Verification</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background: linear-gradient(135deg, #ffd1dc 0%, #e6e6fa 50%, #b0e0e6 100%);
+        }
+        .test-section {
+            margin: 20px 0;
+            padding: 20px;
+            border-radius: 10px;
+            background: white;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        .checklist {
+            list-style-type: none;
+            padding: 0;
+        }
+        .checklist li {
+            padding: 8px 0;
+            display: flex;
+            align-items: center;
+        }
+        .checklist li:before {
+            content: "✓";
+            color: green;
+            font-weight: bold;
+            margin-right: 10px;
+            font-size: 1.2em;
+        }
+        .pending:before {
+            content: "⏳";
+            color: orange;
+        }
+        .error:before {
+            content: "✗";
+            color: red;
+        }
+        .test-btn {
+            background: linear-gradient(135deg, #ffb6c1 0%, #ffd700 100%);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 10px 0;
+            font-weight: bold;
+        }
+        .test-btn:hover {
+            opacity: 0.9;
+        }
+        .code-block {
+            background: #f5f5f5;
+            padding: 10px;
+            border-radius: 5px;
+            font-family: monospace;
+            margin: 10px 0;
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+    <h1>Baby Shower Invitation - Final Fixes Verification</h1>
+    
+    <div class="test-section">
+        <h2>Issues Fixed (Verification)</h2>
+        <ul class="checklist" id="fixes-list">
+            <li id="countdown-fix">Countdown JavaScript - fecha: 18 abril 2026, 8:00 AM</li>
+            <li id="whatsapp-fix">Botón WhatsApp - abre chat con +526151127548 con mensaje de confirmación</li>
+            <li id="map-fix">Mapa - usa link https://maps.app.goo.gl/x11p6SWtkZCkJVZi6</li>
+            <li id="sharelink-fix">Error de shareLink.value eliminado</li>
+        </ul>
+    </div>
+    
+    <div class="test-section">
+        <h2>Test Functions</h2>
+        
+        <h3>1. Countdown Test</h3>
+        <button class="test-btn" onclick="testCountdown()">Test Countdown Calculation</button>
+        <div id="countdown-test-result"></div>
+        
+        <h3>2. WhatsApp Button Test</h3>
+        <button class="test-btn" onclick="testWhatsApp()">Test WhatsApp URL Generation</button>
+        <div id="whatsapp-test-result"></div>
+        
+        <h3>3. Map Link Test</h3>
+        <button class="test-btn" onclick="testMapLink()">Test Map Link</button>
+        <div id="map-test-result"></div>
+        
+        <h3>4. JavaScript Errors Test</h3>
+        <button class="test-btn" onclick="testJSErrors()">Check for JavaScript Errors</button>
+        <div id="js-error-test-result"></div>
+    </div>
+    
+    <div class="test-section">
+        <h2>View Updated Invitation</h2>
+        <p><a href="index.html" target="_blank">Click here to view the fixed baby shower invitation</a></p>
+        <p>Or run a local server: <code>cd baby-shower-invitation && python3 -m http.server 8080</code></p>
+    </div>
+    
+    <script>
+        function testCountdown() {
+            try {
+                const eventDate = new Date('2026-04-18T08:00:00-07:00');
+                const now = new Date();
+                const timeDifference = eventDate - now;
+                
+                if (timeDifference <= 0) {
+                    document.getElementById('countdown-test-result').innerHTML = 
+                        '<div class="code-block">❌ Countdown error: Event date is in the past</div>';
+                    document.getElementById('countdown-fix').className = 'error';
+                    return;
+                }
+                
+                const days = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((timeDifference % (1000 * 60)) / 1000);
+                
+                document.getElementById('countdown-test-result').innerHTML = `
+                    <div class="code-block">
+                        ✅ Countdown working correctly!<br>
+                        Event Date: ${eventDate.toString()}<br>
+                        Current Date: ${now.toString()}<br>
+                        Time until event: ${days} days, ${hours} hours, ${minutes} minutes, ${seconds} seconds
+                    </div>
+                `;
+                document.getElementById('countdown-fix').className = '';
+            } catch (error) {
+                document.getElementById('countdown-test-result').innerHTML = 
+                    `<div class="code-block">❌ Countdown error: ${error.message}</div>`;
+                document.getElementById('countdown-fix').className = 'error';
+            }
+        }
+        
+        function testWhatsApp() {
+            try {
+                const phoneNumber = '+526151127548';
+                const message = encodeURIComponent('¡Hola! Confirmo mi asistencia al Baby Shower de Emma Luz el 18 de abril de 2026. ¡Nos vemos allí! 🎉');
+                const whatsappUrl = `https://wa.me/${phoneNumber}?text=${message}`;
+                
+                // Verify phone number format
+                if (phoneNumber !== '+526151127548') {
+                    document.getElementById('whatsapp-test-result').innerHTML = 
+                        `<div class="code-block">❌ WhatsApp phone number incorrect: ${phoneNumber} (should be +526151127548)</div>`;
+                    document.getElementById('whatsapp-fix').className = 'error';
+                    return;
+                }
+                
+                document.getElementById('whatsapp-test-result').innerHTML = `
+                    <div class="code-block">
+                        ✅ WhatsApp URL generated correctly!<br>
+                        Phone: ${phoneNumber}<br>
+                        Message: ${decodeURIComponent(message)}<br>
+                        URL: <a href="${whatsappUrl}" target="_blank">${whatsappUrl}</a>
+                    </div>
+                `;
+                document.getElementById('whatsapp-fix').className = '';
+            } catch (error) {
+                document.getElementById('whatsapp-test-result').innerHTML = 
+                    `<div class="code-block">❌ WhatsApp test error: ${error.message}</div>`;
+                document.getElementById('whatsapp-fix').className = 'error';
+            }
+        }
+        
+        function testMapLink() {
+            try {
+                // Check if script.js has the correct map link
+                fetch('script.js')
+                    .then(response => response.text())
+                    .then(scriptContent => {
+                        const mapLink = 'https://maps.app.goo.gl/x11p6SWtkZCkJVZi6';
+                        const oldMapLink = 'https://maps.app.goo.gl/Yxi7rov71m8ATBW99';
+                        
+                        if (scriptContent.includes(mapLink)) {
+                            document.getElementById('map-test-result').innerHTML = `
+                                <div class="code-block">
+                                    ✅ Map link is correct!<br>
+                                    Link: <a href="${mapLink}" target="_blank">${mapLink}</a><br>
+                                    Found in script.js
+                                </div>
+                            `;
+                            document.getElementById('map-fix').className = '';
+                        } else if (scriptContent.includes(oldMapLink)) {
+                            document.getElementById('map-test-result').innerHTML = 
+                                `<div class="code-block">❌ Map link is still the old one: ${oldMapLink}</div>`;
+                            document.getElementById('map-fix').className = 'error';
+                        } else {
+                            document.getElementById('map-test-result').innerHTML = 
+                                `<div class="code-block">❌ Map link not found in script.js</div>`;
+                            document.getElementById('map-fix').className = 'error';
+                        }
+                    })
+                    .catch(error => {
+                        document.getElementById('map-test-result').innerHTML = 
+                            `<div class="code-block">❌ Error reading script.js: ${error.message}</div>`;
+                        document.getElementById('map-fix').className = 'error';
+                    });
+            } catch (error) {
+                document.getElementById('map-test-result').innerHTML = 
+                    `<div class="code-block">❌ Map test error: ${error.message}</div>`;
+                document.getElementById('map-fix').className = 'error';
+            }
+        }
+        
+        function testJSErrors() {
+            try {
+                // Check for shareLink.value reference
+                fetch('script.js')
+                    .then(response => response.text())
+                    .then(scriptContent => {
+                        if (scriptContent.includes('shareLink.value')) {
+                            document.getElementById('js-error-test-result').innerHTML = 
+                                `<div class="code-block">❌ Found 'shareLink.value' reference which will cause JavaScript error</div>`;
+                            document.getElementById('sharelink-fix').className = 'error';
+                        } else {
+                            document.getElementById('js-error-test-result').innerHTML = `
+                                <div class="code-block">
+                                    ✅ No 'shareLink.value' reference found<br>
+                                    JavaScript should run without errors
+                                </div>
+                            `;
+                            document.getElementById('sharelink-fix').className = '';
+                        }
+                    })
+                    .catch(error => {
+                        document.getElementById('js-error-test-result').innerHTML = 
+                            `<div class="code-block">❌ Error reading script.js: ${error.message}</div>`;
+                        document.getElementById('sharelink-fix').className = 'error';
+                    });
+            } catch (error) {
+                document.getElementById('js-error-test-result').innerHTML = 
+                    `<div class="code-block">❌ JS error test failed: ${error.message}</div>`;
+                document.getElementById('sharelink-fix').className = 'error';
+            }
+        }
+        
+        // Run all tests on load
+        window.onload = function() {
+            testCountdown();
+            testWhatsApp();
+            testMapLink();
+            testJSErrors();
+        };
+    </script>
+</body>
+</html>

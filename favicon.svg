@@ -1,6 +1,29 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
-  <circle cx="50" cy="50" r="45" fill="#ffb6c1"/>
-  <circle cx="50" cy="50" r="35" fill="#ffffff"/>
-  <path d="M50 30L60 45L75 50L60 55L50 70L40 55L25 50L40 45L50 30Z" fill="#ff69b4"/>
-  <text x="50" y="90" text-anchor="middle" font-family="Arial" font-size="12" fill="#87ceeb">EL</text>
+  <!-- Winnie Pooh themed favicon -->
+  <circle cx="50" cy="50" r="45" fill="#ffcc00"/>
+  <circle cx="50" cy="50" r="35" fill="#fff9c4"/>
+  
+  <!-- Bear face -->
+  <circle cx="50" cy="50" r="25" fill="#ff6f00"/>
+  
+  <!-- Ears -->
+  <circle cx="35" cy="35" r="8" fill="#ff6f00"/>
+  <circle cx="65" cy="35" r="8" fill="#ff6f00"/>
+  
+  <!-- Eyes -->
+  <circle cx="42" cy="45" r="4" fill="#ffffff"/>
+  <circle cx="58" cy="45" r="4" fill="#ffffff"/>
+  <circle cx="42" cy="45" r="2" fill="#000000"/>
+  <circle cx="58" cy="45" r="2" fill="#000000"/>
+  
+  <!-- Nose -->
+  <ellipse cx="50" cy="55" rx="5" ry="3" fill="#000000"/>
+  
+  <!-- Smile -->
+  <path d="M45 62 Q50 68 55 62" stroke="#ffffff" stroke-width="2" fill="none"/>
+  
+  <!-- Honey pot -->
+  <ellipse cx="75" cy="75" rx="8" ry="6" fill="#ff6f00"/>
+  <rect x="67" y="69" width="16" height="6" fill="#ff6f00"/>
+  <ellipse cx="75" cy="69" rx="8" ry="3" fill="#ffcc00"/>
 </svg>

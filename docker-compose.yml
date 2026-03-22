@@ -1,0 +1,22 @@
+name: baby-shower-invitation
+
+services:
+  baby-shower:
+    build: .
+    container_name: baby-shower-invitation
+    restart: unless-stopped
+    networks:
+      - osmar_edge
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.baby-shower.rule=Host(`baby-shower.openclaw.elroi.cloud`)
+      - traefik.http.routers.baby-shower.entrypoints=websecure
+      - traefik.http.routers.baby-shower.tls=true
+      - traefik.http.routers.baby-shower.tls.certresolver=le
+      - traefik.http.services.baby-shower.loadbalancer.server.port=80
+      - traefik.http.routers.baby-shower.middlewares=security-headers
+
+networks:
+  osmar_edge:
+    external: true
+    name: osmar_edge

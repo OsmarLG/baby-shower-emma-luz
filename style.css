@@ -330,6 +330,13 @@ body {
     font-size: 1.2rem;
 }
 
+.highlight-small {
+    color: var(--winnie-pink);
+    font-weight: 500;
+    font-size: 0.95rem;
+    margin-bottom: 15px !important;
+}
+
 .baby-name-small {
     font-family: 'Dancing Script', cursive;
     font-size: 1.8rem;
